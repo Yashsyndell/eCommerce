@@ -1,0 +1,24 @@
+
+.cnt-tbv {
+    height: 90vh;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    width: 100%;
+}
+
+
+.box-tbv {
+    padding: 20px;
+    width: 100%;
+    display: block;
+    background-color: white;
+    -webkit-box-shadow: 0 10px 10px 0 rgba(0, 0, 0, .1);
+    box-shadow: 1px 1px 15px 10px rgba(0, 0, 0, .1) !important;
+    border-radius: 10px;
+    background-image: linear-gradient(pink, lightblue);
+}
+
+/* .table-chek-tbv{
+    text-align: center;
+} */
