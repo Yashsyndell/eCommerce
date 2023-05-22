@@ -19,6 +19,12 @@
     background-image: linear-gradient(pink, lightblue);
 }
 
+.cnt-tbv table thead tr th{
+    font-size: 22px;
+}
+.cnt-tbv table tbody tr td{
+    font-size: 16px;
+}
 /* .table-chek-tbv{
     text-align: center;
 } */
