@@ -15,8 +15,29 @@ const ProductShow = (props) => {
   }
 
 
-  const addInCart=(val)=>{
-      console.log(val);
+  const addInCart= async(val)=>{
+     const db={
+      uid:props.udata.id,
+      pid:val.id,
+      name:val.name,
+      details:val.details,
+      price:val.price,
+      imgsrc:val.imgsrc
+     }
+
+     const data = await fetch("http://localhost:3000/addIN-cart",{
+      method:"post",
+      body:JSON.stringify(db),
+      headers:{
+        "Content-Type":"application/json"
+      }
+     });
+
+     let resp = await data.json()
+     if(resp===true)
+     {
+      alert("Product added in cart...");
+     }
   }
   return (
     <div className="container-fluid">

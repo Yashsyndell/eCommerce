@@ -13,15 +13,17 @@
     }
 
     .list-item span a {
-        color: #ffffff !important;
+        color: #ffffff ;
         cursor: pointer;
         font-size: 20px;
     }
 
     .list-item span a:hover {
+        color: #0dd8d8;
+    }
+    .active{
         color: #d80d0d !important;
     }
-
     .r1-nav {
         background-color: #FFFFFF;
     }

@@ -11,6 +11,14 @@ const Nav = () => {
       $(".list-item").removeClass("show-sider");
     }
   };
+
+  const addActive = (val, lis1) => {
+    $(val).addClass("active");
+
+    for (let i of lis1) {
+      $(i).removeClass("active");
+    }
+  };
   const navigate = useNavigate();
   return (
     <div className="row r1-nav">
@@ -41,31 +49,53 @@ const Nav = () => {
         </div>
         <div className="list-item">
           <span>
-            <a>Home</a>
-          </span>
-          <span>
-            <a>Contact Us</a>
+            <a
+            className="a1"
+              onClick={() => {
+                addActive(".a1", [".a2", ".a3", ".a4"]);
+                navigate("/Product-list");
+              }} 
+            >
+              Home
+            </a>
           </span>
           <span>
             <a
-              className="fa fa-shopping-cart"
+              className="a2"
+              onClick={() => {
+                addActive(".a2", [".a1", ".a3", ".a4"]);
+              }}
+            >
+              Contact Us
+            </a>
+          </span>
+          <span>
+            <a
+              className="fa fa-shopping-cart a3"
               style={{ fontSize: "24px" }}
+              onClick={() => {
+                addActive(".a3", [".a1", ".a2", ".a4"]);
+                navigate("/Addcart");
+              }}
             ></a>
           </span>
           <span>
-            <a  onClick={() => {
+            <a
+              className="a4"
+              onClick={() => {
+                addActive(".a4", [".a1", ".a2", ".a3"]);
                 navigate("/");
-              }}>
-              <i
-                className="fa fa-sign-out"
-                style={{ fontSize: "24px" }}
-              ></i>
+              }}
+            >
+              <i className="fa fa-sign-out" style={{ fontSize: "24px" }}></i>
             </a>
           </span>
         </div>
       </nav>
+      
     </div>
   );
 };
+
 
 export default Nav;

@@ -19,6 +19,7 @@ import TableView from "./components/TableView";
 import Sidebar from "./common/sidebar";
 import Adminprote from "./Adminprote";
 import MasterProte from "./MasterProte";
+import AddCart from "./components/AddCart";
 function App() {
   const [data, setData] = useState(undefined);
   const [isLoggedIn, setIsloggedIN] = useState(false);
@@ -57,6 +58,7 @@ function App() {
         ) : data[0].type === "user" ? (
           <Routes>
             <Route path="/Product-list" element={<ProductShow udata={data[0]} />}></Route>
+            <Route path="/Addcart" element={<AddCart/>}></Route>
           </Routes>
         ) : 
         data === undefined ? (
