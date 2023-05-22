@@ -1,13 +1,17 @@
 
 .cnt-pdc {
     height: 90vh;
-    display: grid;
+    display: flex;
     align-items: center;
     justify-items: center;
     width: 100%;
 }
 .r1-pdc{
     margin-top: 4.5%;
+    margin-left: 25%;
+}
+.r2-pdc{
+    margin-left: 50px;
 }
 .r1-pdc div{
     display: block;
@@ -26,6 +30,7 @@
 .box-pdc2 {
     padding: 20px;
     width: 100%;
+    overflow-y: scroll;
     display: block;
     background-color: white;
     -webkit-box-shadow: 0 10px 10px 0 rgba(0, 0, 0, .1);
@@ -78,4 +83,26 @@
 }
 .table-chek{
     text-align: center;
+}
+
+.input-btn-style1{
+    background-color: rgb(255, 255, 255);
+    padding: 3px 5px;
+    border: 1px solid greenyellow;
+    border-radius: 5px;
+}
+
+.input-btn-style1:hover{
+    background-color:greenyellow;
+}
+
+.input-btn-style2{
+    background-color: rgb(255, 255, 255);
+    padding: 3px 5px;
+    border: 1px solid red;
+    border-radius: 5px;
+}
+.input-btn-style2:hover{
+    background-color:rgb(1, 1, 29);
+    color: white;
 }

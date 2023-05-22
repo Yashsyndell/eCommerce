@@ -2,13 +2,14 @@ import { useFormik } from "formik";
 import "./CSS/Productcrud.css";
 import { Table } from "react-bootstrap";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios  from "axios";
+
 let initialValue = {
   prdname: "",
   details: "",
   price: "",
 };
-const Productcrud = () => {
+const Productcrud = (props) => {
   const [upimg, setUpimg] = useState([]);
   const [imglist, setImglist] = useState([]);
   const [updbtn, setUpdbtn] = useState(false);
@@ -31,23 +32,28 @@ const Productcrud = () => {
         if (!updbtn & !delbtn) {
           const formdata = new FormData();
           formdata.append("image", upimg);
+          formdata.append("uid",props.udata.id);
           formdata.append("prdname", val.prdname);
           formdata.append("details", val.details);
           formdata.append("price", val.price);
-          // console.log(val,upimg);
           const res = await axios.post(
             "http://localhost:3000/insert-imgdetails",
             formdata
           );
+          alert("Product is inserted..");
         }
         if (updbtn & !delbtn) {
           if (upimg.name) {
             const formdata = new FormData();
             formdata.append("image", upimg);
-            formdata.append("prdname", values.prdname);
+            formdata.append("name", values.prdname);
             formdata.append("details", values.details);
             formdata.append("price", values.price);
-            console.log("img");
+            formdata.append("id",id);
+            formdata.append("imgsrc",imgsrc);
+            
+            const data = await axios.put("http://localhost:3000/update-imgData",formdata)
+            alert("Product is updated..");
           } else {
             const db = {
               id: id,
@@ -58,13 +64,31 @@ const Productcrud = () => {
             };
             console.log(db);
           }
+          
           setDelbtn(false);
           setUpdbtn(false);
+          getimgdetail();
           handleReset();
         }
         if (!updbtn & delbtn) {
+          const db={
+            id:id,
+            imgsrc:imgsrc
+          }
+          const data = await fetch("http://localhost:3000/delete-imgData",{
+            method:"delete",
+            body:JSON.stringify(db),
+            headers:{
+              "Content-Type":"application/json"
+            }
+          });
+          let resp = await data.json();
+          if(resp===true){
+            alert("product is removed.");
+          }
           setUpdbtn(false);
           setDelbtn(false);
+          getimgdetail();
         }
 
         getimgdetail();
@@ -162,10 +186,10 @@ const Productcrud = () => {
           </form>
         </div>
       </div>
-      <div className="row r2-pdc">
+      <div className="row r2-pdc"  >
         <div className="box-pdc2" style={{ marginTop: "20px" }}>
           <div>
-            <Table striped>
+            <Table striped >
               <thead>
                 <tr>
                   <th>No.</th>
@@ -173,8 +197,8 @@ const Productcrud = () => {
                   <th>Name</th>
                   <th>Description</th>
                   <th>Price</th>
-                  <th>Update</th>
-                  <th>Remove</th>
+                  {props.udata.upd==="1"?<th>Update</th>:""}
+                  {props.udata.del==="1"?<th>Remove</th>:""}
                 </tr>
               </thead>
               <tbody>
@@ -193,9 +217,11 @@ const Productcrud = () => {
                         <td>{i.name}</td>
                         <td>{i.details}</td>
                         <td>&#8377;{i.price}</td>
+                        {props.udata.upd==="1"?
                         <td className="table-chek">
                           <input
                             type="button"
+                            className="input-btn-style1"
                             onClick={() => {
                               setID(i.id);
                               setImgsrc(i.imgsrc);
@@ -205,17 +231,21 @@ const Productcrud = () => {
                             }}
                             value="Update"
                           ></input>
-                        </td>
+                        </td>:""}
+                        {props.udata.del==="1"?
                         <td className="table-chek">
                           <input
                             type="button"
+                            className="input-btn-style2"
                             onClick={() => {
+                              setID(i.id);
+                              setImgsrc(i.imgsrc);
                               setUpdbtn(false);
                               setDelbtn(true);
                             }}
                             value="Delete"
                           ></input>
-                        </td>
+                        </td>:""}
                       </tr>
                     ))}
               </tbody>

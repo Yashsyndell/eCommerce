@@ -1,9 +1,68 @@
-const ProductShow=()=>{
-    return(
+import { useEffect, useState } from "react";
+import "./CSS/ProductShow.css";
+import Nav from "./Nav.js";
+const ProductShow = (props) => {
+
+  const [prdlist,setPrdlist]=useState([]);
+
+  useEffect(()=>{
+    getAllProduct();
+  },[]);
+  const getAllProduct = async ()=>{
+    const data = await fetch("http://localhost:3000/get-imagedetails");
+    let resp = await data.json();
+    setPrdlist(resp);
+  }
+
+
+  const addInCart=(val)=>{
+      console.log(val);
+  }
+  return (
+    <div className="container-fluid">
+      <div className="row r1-prdshow">
         <div>
-            <h1>Show Product</h1>
+          <Nav />
         </div>
-    )
-}
+      </div>
+      <div className="row r2-prdshow">
+        <div className="head-box">
+          {
+            prdlist.length<0?"":
+            prdlist.map((i,key)=>
+            <div className="box bx-1">
+            <div className="sub-box-1">
+              <div>
+                <img
+                  src={`http://localhost:3000${i.imgsrc}`}
+                  className="prd-img"
+                ></img>
+              </div>
+            </div>
+            <div className="sub-box-2">
+              <div className="subbox-2">
+                <div  className="div-1">
+                  <span>{i.name}</span>
+                </div>
+                <div className="div-2" >
+                  <span >&#8377; {i.price}</span>
+                </div>
+                <div className="div-3" >
+                  <span >{i.details}</span>
+                </div>
+                <div >
+                  <button className="div-4" onClick={()=>{addInCart(i)}}>ADD TO CART</button>
+                </div>
+              </div>
+            </div>
+          </div>
+            )
+          }
+          
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default ProductShow;

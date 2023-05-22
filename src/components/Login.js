@@ -36,10 +36,14 @@ const Login = (props) => {
       } else {
         props.getd(resp);
         if (resp[0].type === "masteradmin" || resp[0].type === "admin") {
-          navigate("/productcrud");
+          navigate("/productcrud",{
+            state:resp[0]
+          });
         }
         if (resp[0].type === "user") {
-          navigate("/Product-list");
+          navigate("/Product-list",{
+            state:resp[0]
+          });
         }
       }
     },

@@ -1,0 +1,65 @@
+.r1-prdshow{
+    position: sticky;
+    top: 0px;
+}
+.head-box{
+    display: flex;
+    flex-wrap: wrap;
+}
+.bx-1{
+    margin-top: 10px;
+    padding: 10px;
+    background-image: linear-gradient(pink, lightblue);
+    width: auto;
+    margin-left: 4.5%;
+    height: auto;
+}
+.prd-img{
+    height: 300px;
+    width: 350px;
+    border-radius: 10px;
+    vertical-align: none;
+}
+
+.sub-box-1,.sub-box-2{
+    display: block;
+}
+
+.sub-box-1{
+    width: 60%;
+}
+.sub-box-2{
+    width: 100%;
+    margin-top: 0px;
+}
+
+.subbox-2{
+    display: block;
+    text-align: left;
+    padding-top: 10px;
+}
+
+
+.div-1{
+    font-size: 26px;
+}
+
+.div-2{
+    font-size: 16px;
+    margin:15px 0px;
+}
+
+.div-3{
+    font-size: 13px;
+    margin: 10px 0px;
+}
+
+.div-4{
+    padding: 10px 29px;
+    border: 1px solid greenyellow;
+    border-radius: 8px;
+}
+
+.div-4:hover{
+    background-color: greenyellow;
+}

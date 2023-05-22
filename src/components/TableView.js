@@ -7,7 +7,7 @@ const TableView = () => {
 
   useEffect(() => {
     allUserdetails();
-  },[]);
+  }, []);
 
   const allUserdetails = async () => {
     let data = await fetch("http://localhost:3000/user_details");
@@ -15,11 +15,11 @@ const TableView = () => {
     setUserlist(resp);
   };
   const check = async (val1, t1, f1) => {
-    if(f1===undefined){
-      const db={
+    if (f1 === undefined) {
+      const db = {
         id: val1,
         type: t1,
-      }
+      };
       let data = await fetch("http://localhost:3000/update-type", {
         method: "put",
         body: JSON.stringify(db),
@@ -29,6 +29,7 @@ const TableView = () => {
       });
       let resp = await data.json();
       console.log(resp);
+      allUserdetails();
     }
     if (f1 === "upd") {
       const bd = {
@@ -45,6 +46,7 @@ const TableView = () => {
 
       let resp = await data.json();
       console.log(resp);
+      allUserdetails();
     }
     if (f1 === "del") {
       const bd = {
@@ -61,12 +63,10 @@ const TableView = () => {
 
       let resp = await data.json();
       console.log(resp);
+      allUserdetails();
     }
-    allUserdetails();
   };
-  // const setCheck = (val) => {
-  //   $(val).attr("checked", "checked");
-  // };
+
 
   return (
     <div className="container-fluid cnt-tbv">
@@ -92,37 +92,32 @@ const TableView = () => {
                         <td>{key + 1}</td>
                         <td>{i.email}</td>
                         <td>
-                          {
-                            i.type==="admin"?<input
-                            type="radio"
-                            name={i.id}
-                            checked
-                          ></input>:<input
-                            type="radio"
-                            name={i.id}
-                            onClick={() => check(i.id, "admin")}
-                          ></input>
-                          }
+                          {i.type === "admin" ? (
+                            <input type="radio" name={i.id} checked></input>
+                          ) : (
+                            <input
+                              type="radio"
+                              name={i.id}
+                              onClick={() => check(i.id, "admin")}
+                            ></input>
+                          )}
                         </td>
                         <td>
-                           {
-                            i.type==="user"?<input
-                            type="radio"
-                            name={i.id}
-                            checked
-                          ></input>:<input
-                            type="radio"
-                            name={i.id}
-                            onClick={() => check(i.id, "user")}
-                          ></input>
-                          }
+                          {i.type === "user" ? (
+                            <input type="radio" name={i.id} checked></input>
+                          ) : (
+                            <input
+                              type="radio"
+                              name={i.id}
+                              onClick={() => check(i.id, "user")}
+                            ></input>
+                          )}
                         </td>
                         <td className="table-chek-tbv">
                           {i.type === "user" ? (
                             ""
                           ) : i.upd === "1" ? (
                             <input
-                              id="chek1"
                               type="checkbox"
                               checked
                               value={i.upd}
@@ -130,7 +125,6 @@ const TableView = () => {
                             ></input>
                           ) : (
                             <input
-                              id="chek1"
                               type="checkbox"
                               value={i.upd}
                               onClick={() => check(i.id, "1", "upd")}
@@ -142,7 +136,6 @@ const TableView = () => {
                             ""
                           ) : i.del === "1" ? (
                             <input
-                              id="chek2"
                               type="checkbox"
                               checked
                               value={i.del}
@@ -150,7 +143,6 @@ const TableView = () => {
                             ></input>
                           ) : (
                             <input
-                              id="chek2"
                               type="checkbox"
                               value={i.del}
                               onClick={() => check(i.id, "1", "del")}

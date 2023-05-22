@@ -26,7 +26,6 @@ function App() {
     setData(val);
     if (val[0].type) {
       setIsloggedIN(true);
-      console.log(val);
     }
   };
   const setISlog = () => {
@@ -57,7 +56,7 @@ function App() {
           ""
         ) : data[0].type === "user" ? (
           <Routes>
-            <Route path="/Product-list" element={<ProductShow />}></Route>
+            <Route path="/Product-list" element={<ProductShow udata={data[0]} />}></Route>
           </Routes>
         ) : 
         data === undefined ? (
@@ -65,7 +64,7 @@ function App() {
         ) : (
           <Adminprote isLoggedIn={data[0].type}>
             <Routes>
-              <Route path="/productcrud" element={<Productcrud />} />
+              <Route path="/productcrud" element={<Productcrud udata={data[0]} />} />
             </Routes>
             <MasterProte>
             <Routes>
