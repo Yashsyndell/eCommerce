@@ -10,44 +10,70 @@ const TableView = () => {
   }, []);
 
   const allUserdetails = async () => {
+   try{
     let data = await fetch("http://localhost:3000/user_details");
     let resp = await data.json();
     setUserlist(resp);
+   }
+   catch{
+    alert("Error in geting user reights details.");
+   }
   };
   const check = async (val1, t1, f1) => {
-    if (f1 === undefined) {
-      const db = {
-        id: val1,
-        type: t1,
-      };
-      let data = await fetch("http://localhost:3000/update-type", {
-        method: "put",
-        body: JSON.stringify(db),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      let resp = await data.json();
-      console.log(resp);
-      allUserdetails();
+  try{
+    try{
+      if (f1 === undefined) {
+        const db = {
+          id: val1,
+          type: t1,
+        };
+        let data = await fetch("http://localhost:3000/update-type", {
+          method: "put",
+          body: JSON.stringify(db),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        let resp = await data.json();
+        if(resp===true)
+        {
+          alert("Rights are change..");
+        }
+        else{
+          alert("Rights are not change..");
+        }
+        allUserdetails();
+      }
     }
-    if (f1 === "upd") {
-      const bd = {
-        id: val1,
-        upd: t1,
-      };
-      let data = await fetch("http://localhost:3000/update-rights", {
-        method: "put",
-        body: JSON.stringify(bd),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      let resp = await data.json();
-      console.log(resp);
-      allUserdetails();
+    catch{
+      alert("Error come in updateing admin and user rights..");
     }
+    try{
+      if (f1 === "upd") {
+        const bd = {
+          id: val1,
+          upd: t1,
+        };
+        let data = await fetch("http://localhost:3000/update-rights", {
+          method: "put",
+          body: JSON.stringify(bd),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+  
+        let resp = await data.json();
+        console.log(resp);
+        if(resp===false){
+          alert("Error at update rights..");
+        }
+        allUserdetails();
+      }
+    }
+    catch{
+      alert("Error come at give update rights time..");
+    }
+   try{
     if (f1 === "del") {
       const bd = {
         id: val1,
@@ -63,8 +89,19 @@ const TableView = () => {
 
       let resp = await data.json();
       console.log(resp);
+      if(resp===false){
+        alert("Error at remove rights..");
+      }
       allUserdetails();
     }
+   }
+   catch{
+    alert("Error come at give delete rights time..");
+   }
+  }
+  catch{
+    alert("Error come in checking rights of functionality.");
+  }
   };
 
 
@@ -86,7 +123,7 @@ const TableView = () => {
               </thead>
               <tbody>
                 {userlist.length < 0
-                  ? ""
+                  ? <h2>List is empty</h2>
                   : userlist.map((i, key) => (
                       <tr>
                         <td>{key + 1}</td>

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 const AddCart = () => {
   useEffect(() => {
     getAddcartlist();
-  }, []);
+  }, [ ]);
   const [addcartlist, setAddcartlist] = useState([]);
   const [totalsum, setTotalsum] = useState();
   const getAddcartlist = async () => {
@@ -65,6 +65,7 @@ const AddCart = () => {
                       <img
                         src={`http://localhost:3000${i.imgsrc}`}
                         className="prd-img-adc"
+                        alt="prdimg"
                       ></img>
                     </div>
                   </div>
@@ -100,7 +101,7 @@ const AddCart = () => {
               <div className="subbox-2">
                 {addcartlist.length < 0
                   ? ""
-                  : addcartlist.map((i,key) => (
+                  : addcartlist.map((i, key) => (
                       <>
                         <div className="div-2">
                           <span>Product Name :-{i.name}</span>
@@ -108,7 +109,7 @@ const AddCart = () => {
                         <div className="div-2">
                           <span>Price : &#8377;{i.price}</span>
                         </div>
-                        <hr/>
+                        <hr />
                       </>
                     ))}
                 <div className="div-2">
@@ -118,13 +119,19 @@ const AddCart = () => {
                   <span></span>
                 </div>
                 <div>
-                  <button className="div-4" onClick={()=>{alert("Order placed..")}}>PLACE ORDER</button>
+                  <button
+                    className="div-4"
+                    onClick={() => {
+                     alert("Order is confirem..");
+                    }}
+                  >
+                    PLACE ORDER
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        
       </div>
     </div>
   );

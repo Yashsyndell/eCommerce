@@ -1,17 +1,8 @@
 import "font-awesome/css/font-awesome.min.css";
 import "./assets/css/app.css";
-// import DashboardPage from "./pages/DashboardPage";
-// import TypographyPage from "./pages/TypographyPage";
-// import LoginPage from "./pages/auth/LoginPage";
-// import ResetPassword from "./pages/auth/ResetPassword";
-// import ProfilePage from "./pages/profile/ProfilePage";
-// import ChangePasswordPage from "./pages/profile/ChangePasswordPage";
-// import UserPreferencesPage from "./pages/profile/UserPreferencesPage";
-// import AdminBlankPage from "./pages/AdminBlankPage";
 import { Route, Routes } from "react-router-dom";
 import Login from "./components/Login.js";
 import { useState } from "react";
-import Compmen from "./hoc/Compmen";
 import Protected from "./Protected";
 import ProductShow from "./components/ProductShow.js";
 import Productcrud from "./components/Productcrud";
@@ -20,6 +11,7 @@ import Sidebar from "./common/sidebar";
 import Adminprote from "./Adminprote";
 import MasterProte from "./MasterProte";
 import AddCart from "./components/AddCart";
+
 function App() {
   const [data, setData] = useState(undefined);
   const [isLoggedIn, setIsloggedIN] = useState(false);
@@ -31,13 +23,12 @@ function App() {
   };
   const setISlog = () => {
     setData(undefined);
+    setIsloggedIN(false);
   };
-  // let pathName = window.location.pathname;
-  // let arr = pathName.toString().split("/");
-  // let currentPath = arr[arr.length - 1];
+
 
   return (
-    <>
+    <div>
       {data === undefined ? (
         ""
       ) : data[0].type === "user" ? (
@@ -76,21 +67,9 @@ function App() {
           </Adminprote>
         )}
       </Protected>
-    </>
+    </div>
   );
 }
 
 export default App;
 
-{
-  /* <Route exact path="/login" element={<LoginPage />} />
-        <Route exact path="/reset-password" element={<ResetPassword />} /> */
-}
-{
-  /* <Route exact path="/profile" element={<ProfilePage />} />
-        <Route exact path="/change-password" element={<ChangePasswordPage />} />
-        <Route exact path="/preferences" element={<UserPreferencesPage />} />
-        <Route exact path="/typography" element={<TypographyPage />} />
-        <Route exact path="/blank-page" element={<AdminBlankPage />} />
-        <Route exact path="/dashboard" element={<DashboardPage />}></Route> */
-}

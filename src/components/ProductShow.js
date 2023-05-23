@@ -9,35 +9,48 @@ const ProductShow = (props) => {
     getAllProduct();
   },[]);
   const getAllProduct = async ()=>{
+   try{
     const data = await fetch("http://localhost:3000/get-imagedetails");
     let resp = await data.json();
     setPrdlist(resp);
+   }
+   catch{
+    alert("Error at geting image details");
+   }
   }
 
 
   const addInCart= async(val)=>{
-     const db={
-      uid:props.udata.id,
-      pid:val.id,
-      name:val.name,
-      details:val.details,
-      price:val.price,
-      imgsrc:val.imgsrc
-     }
-
-     const data = await fetch("http://localhost:3000/addIN-cart",{
-      method:"post",
-      body:JSON.stringify(db),
-      headers:{
-        "Content-Type":"application/json"
-      }
-     });
-
-     let resp = await data.json()
-     if(resp===true)
-     {
-      alert("Product added in cart...");
-     }
+    try{
+      const db={
+        uid:props.udata.id,
+        pid:val.id,
+        name:val.name,
+        details:val.details,
+        price:val.price,
+        imgsrc:val.imgsrc
+       }
+  
+       const data = await fetch("http://localhost:3000/addIN-cart",{
+        method:"post",
+        body:JSON.stringify(db),
+        headers:{
+          "Content-Type":"application/json"
+        }
+       });
+  
+       let resp = await data.json()
+       if(resp===true)
+       {
+        alert("Product added in cart...");
+       }
+       else{
+        alert("Error product not add in cart");
+       }
+    }
+    catch{
+      alert("Error come in adding cart entrese");
+    }
   }
   return (
     <div className="container-fluid">
@@ -49,7 +62,7 @@ const ProductShow = (props) => {
       <div className="row r2-prdshow">
         <div className="head-box">
           {
-            prdlist.length<0?"":
+            prdlist.length<0?<h2>List is empty...</h2>:
             prdlist.map((i,key)=>
             <div className="box bx-1">
             <div className="sub-box-1">
@@ -57,6 +70,7 @@ const ProductShow = (props) => {
                 <img
                   src={`http://localhost:3000${i.imgsrc}`}
                   className="prd-img"
+                  alt="prdimg"
                 ></img>
               </div>
             </div>

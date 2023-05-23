@@ -1,25 +1,23 @@
-
 .cnt-pdc {
-    height: 90vh;
-    display: flex;
+   padding: 0px;
+}
+
+.r1-pdc {
+    margin: 62px;
     align-items: center;
-    justify-items: center;
-    width: 100%;
+    justify-content: center;
 }
-.r1-pdc{
-    margin-top: 4.5%;
-    margin-left: 25%;
+.head-box-prdcrud1,
+.head-box-prdcrud2{
+    display: inline-block;
+    width: auto;
 }
-.r2-pdc{
-    margin-left: 50px;
-}
-.r1-pdc div{
-    display: block;
-    width: 100%;
-}
+
+
+
 .box-pdc {
     padding: 20px;
-    width: 450px;
+    width: 500px;
     display: block;
     background-color: white;
     -webkit-box-shadow: 0 10px 10px 0 rgba(0, 0, 0, .1);
@@ -27,9 +25,10 @@
     border-radius: 10px;
     background-image: linear-gradient(pink, lightblue);
 }
+
 .box-pdc2 {
     padding: 20px;
-    width: 100%;
+    width: auto;
     overflow-y: scroll;
     display: block;
     background-color: white;
@@ -39,35 +38,41 @@
     background-image: linear-gradient(pink, lightblue);
 }
 
-.box-pdc form div span{
+.box-pdc form div span {
     display: block;
     width: 100%;
 }
-.add-text{
+
+.add-text {
     text-align: center;
     font-size: 20px;
     font-weight: bold;
 }
-.input-group{
+
+.input-group {
     margin-top: 20px;
     margin-left: 15%;
 }
-.input-pdc{
+
+.input-pdc {
     width: 70%;
     border-radius: 5px;
     border: 1px solid grey;
     font-size: 16px;
     padding: 10px;
 }
-.img-prd{
+
+.img-prd {
     width: 50px;
     height: 50px;
     border-radius: 10px;
 }
-.butn-group-pdc{
+
+.butn-group-pdc {
     margin-top: 20px;
     text-align: center;
 }
+
 .pdc-btn {
     font-size: 16px;
     width: 150px;
@@ -81,28 +86,30 @@
     background-color: rgb(255, 255, 255);
     color: black;
 }
-.table-chek{
+
+.table-chek {
     text-align: center;
 }
 
-.input-btn-style1{
+.input-btn-style1 {
     background-color: rgb(255, 255, 255);
     padding: 3px 5px;
     border: 1px solid greenyellow;
     border-radius: 5px;
 }
 
-.input-btn-style1:hover{
-    background-color:greenyellow;
+.input-btn-style1:hover {
+    background-color: greenyellow;
 }
 
-.input-btn-style2{
+.input-btn-style2 {
     background-color: rgb(255, 255, 255);
     padding: 3px 5px;
     border: 1px solid red;
     border-radius: 5px;
 }
-.input-btn-style2:hover{
-    background-color:rgb(1, 1, 29);
+
+.input-btn-style2:hover {
+    background-color: rgb(1, 1, 29);
     color: white;
 }

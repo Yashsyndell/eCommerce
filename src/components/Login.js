@@ -9,49 +9,69 @@ const intialval = {
   pass: "",
 };
 const Login = (props) => {
+  
   const [showpass, setShowpass] = useState(false);
   const [typepass, setTypepass] = useState("password");
   const navigate = useNavigate();
-  const { handleBlur, handleChange, handleSubmit, values, errors } = useFormik({
+  const {
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    handleReset,
+    values,
+    errors,
+  } = useFormik({
     initialValues: intialval,
     validationSchema: Loginvalidation,
     onSubmit: async (val) => {
-      let userdata = {
-        email: val.email,
-        pass: val.pass,
-      };
-      const data = await fetch("http://localhost:3000/get-userdetails", {
-        method: "post",
-        body: JSON.stringify(userdata),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      try {
+        let userdata = {
+          email: val.email,
+          pass: val.pass,
+        };
+        try {
+          const data = await fetch("http://localhost:3000/get-userdetails", {
+            method: "post",
+            body: JSON.stringify(userdata),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
 
-      const resp = await data.json();
-      props.getd(resp);
-      props.getd(resp);
-      if (resp === false) {
-        alert("Data are not found...");
-      } else {
-        props.getd(resp);
-        if (resp[0].type === "masteradmin" || resp[0].type === "admin") {
-          navigate("/productcrud",{
-            state:resp[0]
-          });
+          const resp = await data.json();
+          if (resp !== false) {
+            props.getd(resp);
+            props.getd(resp);
+          }
+
+          if (resp === false) {
+            alert("Email and password are not valid...");
+            handleReset();
+          } else {
+            props.getd(resp);
+            if (resp[0].type === "masteradmin" || resp[0].type === "admin") {
+              navigate("/productcrud", {
+                state: resp[0],
+              });
+            }
+            if (resp[0].type === "user") {
+              navigate("/Product-list", {
+                state: resp[0],
+              });
+            }
+          }
+        } catch {
+          alert("Error in login api");
         }
-        if (resp[0].type === "user") {
-          navigate("/Product-list",{
-            state:resp[0]
-          });
-        }
+      } catch {
+        alert("Error in Login functionality");
       }
     },
   });
-const location1= useLocation();
-if(location1.state){
-  props.setISlog();
-}
+  const location1 = useLocation();
+  if (location1.state) {
+    props.setISlog();
+  }
   return (
     <div className="container-fluid cnt-login">
       <div className="row r1-lg">
@@ -89,6 +109,11 @@ if(location1.state){
                   onBlur={handleBlur}
                   placeholder="Password"
                 ></input>
+                {errors.pass ? (
+                  <p className="text-erros-lg">{errors.pass}</p>
+                ) : (
+                  ""
+                )}
               </div>
               <div className="show-hide-pass-lg">
                 <span>
@@ -102,13 +127,7 @@ if(location1.state){
                   {showpass ? "Hide Password" : "Show Password"}
                 </span>
               </div>
-              <div>
-                {errors.pass ? (
-                  <p className="text-erros-lg">{errors.pass}</p>
-                ) : (
-                  ""
-                )}
-              </div>
+              <div></div>
               <div>
                 <button type="submit" className="login-btn">
                   Submit

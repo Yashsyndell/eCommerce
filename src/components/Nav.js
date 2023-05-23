@@ -20,6 +20,9 @@ const Nav = () => {
     }
   };
   const navigate = useNavigate();
+  const handleLogout = ()=>{
+    navigate("/",{state:true});
+  }
   return (
     <div className="row r1-nav">
       <nav
@@ -84,7 +87,7 @@ const Nav = () => {
               className="a4"
               onClick={() => {
                 addActive(".a4", [".a1", ".a2", ".a3"]);
-                navigate("/");
+               handleLogout()
               }}
             >
               <i className="fa fa-sign-out" style={{ fontSize: "24px" }}></i>
