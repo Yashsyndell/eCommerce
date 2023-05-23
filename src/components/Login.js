@@ -14,6 +14,7 @@ const Login = (props) => {
   const [typepass, setTypepass] = useState("password");
   const navigate = useNavigate();
   const {
+    touched,
     handleBlur,
     handleChange,
     handleSubmit,
@@ -93,7 +94,7 @@ const Login = (props) => {
                   onBlur={handleBlur}
                   placeholder="Email Address"
                 ></input>
-                {errors.email ? (
+                {touched.email && errors.email ? (
                   <p className="text-erros-lg">{errors.email}</p>
                 ) : (
                   ""
@@ -104,12 +105,13 @@ const Login = (props) => {
                   className="input-tag"
                   type={typepass}
                   name="pass"
+                  maxLength="8"
                   value={values.pass}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   placeholder="Password"
                 ></input>
-                {errors.pass ? (
+                {touched.pass && errors.pass ? (
                   <p className="text-erros-lg">{errors.pass}</p>
                 ) : (
                   ""

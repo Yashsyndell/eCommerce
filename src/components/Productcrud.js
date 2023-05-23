@@ -13,7 +13,7 @@ let initialValue = {
 const Productcrud = (props) => {
   const [upimg, setUpimg] = useState([]);
   const [imglist, setImglist] = useState([]);
-  const [keychange,setKeychange]=useState();
+  const [keychange,setKeychange]=useState(false);
   const [updbtn, setUpdbtn] = useState(false);
   const [id, setID] = useState();
   const [imgsrc, setImgsrc] = useState();
@@ -30,6 +30,7 @@ const Productcrud = (props) => {
     }
   };
   const {
+    touched,
     handleBlur,
     handleChange,
     handleSubmit,
@@ -58,7 +59,9 @@ const Productcrud = (props) => {
           } else {
             alert("Error in data inserted time...");
           }
-          setKeychange(0);
+          setKeychange(!keychange);
+          setUpimg([]);
+          
         } catch {
           alert("Error in insert image details api");
         }
@@ -84,6 +87,8 @@ const Productcrud = (props) => {
               alert("Product is not updated...");
             }
             setUpdbtn(false);
+            setKeychange(!keychange);
+            setUpimg([]);
           } catch {
             alert("Error in updateing img with data api...");
           }
@@ -95,7 +100,7 @@ const Productcrud = (props) => {
               details: values.details,
               price: values.price,
             };
-            const data = await fetch("/update-dataOfimg", {
+            const data = await fetch("http://localhost:3000/update-dataOfimg", {
               method: "put",
               body: JSON.stringify(db),
               headers: {
@@ -108,6 +113,7 @@ const Productcrud = (props) => {
             } else {
               alert("Data not updated...");
             }
+            setKeychange(!keychange);
           } catch {
             alert("Error in updateting only image product data...");
             handleReset();
@@ -118,7 +124,6 @@ const Productcrud = (props) => {
       }
       getimgdetail();
       handleReset();
-      setKeychange(1);
     },
   });
 
@@ -168,7 +173,7 @@ const Productcrud = (props) => {
                   className="input-pdc"
                   placeholder="Enter Product Name"
                 ></input>
-                {errors.prdname ? (
+                {touched.prdname &&  errors.prdname ? (
                   <p className="text-erros-lg-prdcrud">{errors.prdname}</p>
                 ) : (
                   ""
@@ -179,6 +184,7 @@ const Productcrud = (props) => {
               <span>Description</span>
               <span>
                 <textarea
+                style={{overflowY:"scroll"}}
                   type="text"
                   name="details"
                   value={values.details}
@@ -187,7 +193,7 @@ const Productcrud = (props) => {
                   className="input-pdc"
                   placeholder="Describe your product"
                 ></textarea>
-                {errors.details ? (
+                {touched.details && errors.details ? (
                   <p className="text-erros-lg-prdcrud">{errors.details}</p>
                 ) : (
                   ""
@@ -206,7 +212,7 @@ const Productcrud = (props) => {
                   className="input-pdc"
                   placeholder="Enter amount"
                 ></input>
-                {errors.price ? (
+                {touched.price && errors.price ? (
                   <p className="text-erros-lg-prdcrud">{errors.price}</p>
                 ) : (
                   ""
@@ -225,6 +231,7 @@ const Productcrud = (props) => {
                   }}
                   className="input-pdc file-uload-pdc"
                   accept=".img,.jpg"
+                  required
                 ></input>
               </span>
             </div>
@@ -246,13 +253,15 @@ const Productcrud = (props) => {
           </form>
         </div>
         </div>
-      {/* </div> */}
-      {/* <div className="row r2-pdc"> */}
       <div className="head-box-prdcrud2">
         <div className="box-pdc2" style={{ marginTop: "20px" }}>
           <div>
+            <div>
+            <h1 style={{textAlign:"center",fontSize:"26px",padding:"10px" }}>LIST OF PRODUCT</h1>
+            </div>
             <Table striped>
               <thead>
+              
                 <tr>
                   <th>No.</th>
                   <th>Image</th>

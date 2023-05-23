@@ -11,6 +11,7 @@ import Sidebar from "./common/sidebar";
 import Adminprote from "./Adminprote";
 import MasterProte from "./MasterProte";
 import AddCart from "./components/AddCart";
+import Nav from "./components/Nav";
 
 function App() {
   const [data, setData] = useState(undefined);
@@ -32,7 +33,7 @@ function App() {
       {data === undefined ? (
         ""
       ) : data[0].type === "user" ? (
-        ""
+        <Nav/>
       ) : (
         <Sidebar udata={data[0]} />
       )}

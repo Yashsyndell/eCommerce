@@ -110,6 +110,7 @@ const TableView = () => {
       <div className="row r2-tbv">
         <div className="box-tbv" style={{ marginTop: "20px" }}>
           <div>
+          <h1 style={{textAlign:"center",fontSize:"26px",padding:"10px"}}>LIST OF ADMIN & USER</h1>
             <Table striped>
               <thead>
                 <tr>

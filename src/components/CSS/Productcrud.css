@@ -113,3 +113,12 @@
     background-color: rgb(1, 1, 29);
     color: white;
 }
+
+
+.text-erros-lg-prdcrud{
+    color: rgb(233, 233, 233);
+    background-color: lightcoral;
+    width:70%;
+    padding: 10px;
+    border-radius: 10px;
+}

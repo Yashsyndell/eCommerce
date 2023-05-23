@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import "./CSS/ProductShow.css";
-import Nav from "./Nav.js";
 const ProductShow = (props) => {
 
   const [prdlist,setPrdlist]=useState([]);
@@ -54,11 +53,6 @@ const ProductShow = (props) => {
   }
   return (
     <div className="container-fluid">
-      <div className="row r1-prdshow">
-        <div>
-          <Nav />
-        </div>
-      </div>
       <div className="row r2-prdshow">
         <div className="head-box">
           {

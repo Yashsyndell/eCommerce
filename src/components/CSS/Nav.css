@@ -1,3 +1,7 @@
+.r1-nav{
+    position: sticky;
+    top: 0px;
+}
 .bar-slider {
     display: none;
 }
@@ -24,10 +28,6 @@
 
 .active {
     color: #d80d0d !important;
-}
-
-.r1-nav {
-    background-color: #FFFFFF;
 }
 
 .r1-login {

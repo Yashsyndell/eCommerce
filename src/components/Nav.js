@@ -51,42 +51,36 @@ const Nav = () => {
           </span>
         </div>
         <div className="list-item">
-          <span>
+          <span onClick={()=>{ addActive(".a1", [".a2", ".a3", ".a4"]);}}>
             <a
             className="a1"
               onClick={() => {
-                addActive(".a1", [".a2", ".a3", ".a4"]);
                 navigate("/Product-list");
               }} 
             >
               Home
             </a>
           </span>
-          <span>
+          <span onClick={()=>{ addActive(".a2", [".a1", ".a3", ".a4"]);}}>
             <a
               className="a2"
-              onClick={() => {
-                addActive(".a2", [".a1", ".a3", ".a4"]);
-              }}
             >
               Contact Us
             </a>
           </span>
-          <span>
+          <span onClick={()=>{addActive(".a3", [".a1", ".a2", ".a4"]);}}>
             <a
               className="fa fa-shopping-cart a3"
               style={{ fontSize: "24px" }}
               onClick={() => {
-                addActive(".a3", [".a1", ".a2", ".a4"]);
                 navigate("/Addcart");
               }}
             ></a>
           </span>
-          <span>
+          <span onClick={()=>{addActive(".a4", [".a1", ".a2", ".a3"]);}}>
             <a
               className="a4"
               onClick={() => {
-                addActive(".a4", [".a1", ".a2", ".a3"]);
                handleLogout()
               }}
             >

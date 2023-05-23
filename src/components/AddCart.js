@@ -1,4 +1,4 @@
-import Nav from "./Nav.js";
+
 import "./CSS/AddCart.css";
 import { useEffect, useState } from "react";
 const AddCart = () => {
@@ -49,11 +49,6 @@ const AddCart = () => {
   };
   return (
     <div className="container-fluid">
-      <div className="row r1-prdshow">
-        <div>
-          <Nav />
-        </div>
-      </div>
       <div className="row r2-addcart-adc">
         <div className="head-box-adc">
           {addcartlist.length < 0
