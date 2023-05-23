@@ -11,7 +11,7 @@ const TableView = () => {
 
   const allUserdetails = async () => {
    try{
-    let data = await fetch("http://localhost:3000/user_details");
+    let data = await fetch("http://localhost:3000/user_details");//This is for get admin and user details.
     let resp = await data.json();
     setUserlist(resp);
    }
@@ -27,6 +27,7 @@ const TableView = () => {
           id: val1,
           type: t1,
         };
+        //This is for update admin and user type.
         let data = await fetch("http://localhost:3000/update-type", {
           method: "put",
           body: JSON.stringify(db),
@@ -54,6 +55,7 @@ const TableView = () => {
           id: val1,
           upd: t1,
         };
+        //This is for giv update and delete rights to admin.
         let data = await fetch("http://localhost:3000/update-rights", {
           method: "put",
           body: JSON.stringify(bd),
@@ -79,6 +81,7 @@ const TableView = () => {
         id: val1,
         del: t1,
       };
+      //This is for remove update and delete rights.
       let data = await fetch("http://localhost:3000/delete-rights", {
         method: "put",
         body: JSON.stringify(bd),

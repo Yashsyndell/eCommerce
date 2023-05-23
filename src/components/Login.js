@@ -31,6 +31,7 @@ const Login = (props) => {
           pass: val.pass,
         };
         try {
+          //This is check user email and password.
           const data = await fetch("http://localhost:3000/get-userdetails", {
             method: "post",
             body: JSON.stringify(userdata),
@@ -50,11 +51,13 @@ const Login = (props) => {
             handleReset();
           } else {
             props.getd(resp);
+            //This is for navigate in product CRUD page.
             if (resp[0].type === "masteradmin" || resp[0].type === "admin") {
               navigate("/productcrud", {
                 state: resp[0],
               });
             }
+            //This is for navigate Product show page.
             if (resp[0].type === "user") {
               navigate("/Product-list", {
                 state: resp[0],

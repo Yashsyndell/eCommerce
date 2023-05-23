@@ -22,7 +22,7 @@ const Productcrud = (props) => {
   }, []);
   const getimgdetail = async () => {
     try {
-      const data = await fetch("http://localhost:3000/get-imagedetails");
+      const data = await fetch("http://localhost:3000/get-imagedetails");//This is get image and details.
       let resp = await data.json();
       setImglist(resp);
     } catch {
@@ -49,6 +49,8 @@ const Productcrud = (props) => {
           formdata.append("prdname", val.prdname);
           formdata.append("details", val.details);
           formdata.append("price", val.price);
+
+          //This is for insert image and details.
           const res = await axios.post(
             "http://localhost:3000/insert-imgdetails",
             formdata
@@ -77,6 +79,7 @@ const Productcrud = (props) => {
             formdata.append("id", id);
             formdata.append("imgsrc", imgsrc);
 
+            //This is for update image and details.
             const data = await axios.put(
               "http://localhost:3000/update-imgData",
               formdata
@@ -100,6 +103,7 @@ const Productcrud = (props) => {
               details: values.details,
               price: values.price,
             };
+            //This is for update only image details.
             const data = await fetch("http://localhost:3000/update-dataOfimg", {
               method: "put",
               body: JSON.stringify(db),
@@ -133,6 +137,7 @@ const Productcrud = (props) => {
         id: id,
         imgsrc: imgsrc,
       };
+      //This is user for remove product from list.
       const data = await fetch("http://localhost:3000/delete-imgData", {
         method: "delete",
         body: JSON.stringify(db),

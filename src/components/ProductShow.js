@@ -9,7 +9,7 @@ const ProductShow = (props) => {
   },[]);
   const getAllProduct = async ()=>{
    try{
-    const data = await fetch("http://localhost:3000/get-imagedetails");
+    const data = await fetch("http://localhost:3000/get-imagedetails");//This is get image and details list.
     let resp = await data.json();
     setPrdlist(resp);
    }
@@ -29,7 +29,8 @@ const ProductShow = (props) => {
         price:val.price,
         imgsrc:val.imgsrc
        }
-  
+       
+       //This is for add product in cart.
        const data = await fetch("http://localhost:3000/addIN-cart",{
         method:"post",
         body:JSON.stringify(db),

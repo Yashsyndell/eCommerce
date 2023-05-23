@@ -8,7 +8,7 @@ const AddCart = () => {
   const [addcartlist, setAddcartlist] = useState([]);
   const [totalsum, setTotalsum] = useState();
   const getAddcartlist = async () => {
-    const data = await fetch("http://localhost:3000/get-cartlist");
+    const data = await fetch("http://localhost:3000/get-cartlist");//Get cart list.
     let resp = await data.json();
     setAddcartlist(resp);
     getTotalsum(resp[0].uid);
@@ -18,6 +18,7 @@ const AddCart = () => {
     let db = {
       id: i,
     };
+    //Get sum of select product.
     const data = await fetch("http://localhost:3000/get-sumtotal", {
       method: "post",
       body: JSON.stringify(db),
@@ -33,6 +34,7 @@ const AddCart = () => {
     let db = {
       id: i,
     };
+    //Remove product frome cart list.
     const data = await fetch("http://localhost:3000/delete-prdCart", {
       method: "delete",
       body: JSON.stringify(db),
